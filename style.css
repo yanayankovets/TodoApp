@@ -16,12 +16,13 @@ body {
     box-shadow: 0 10px 30px rgb(0 0 0 / 20%);
     margin-top: 20px;
     margin-bottom: 20px;
+    border-radius: 10px;
 }
 
 .title {
     text-align: center;
-    margin-top: 20px;
-    font-size: 24px;
+    margin-top: 26px;
+    font-size: 28px;
     font-weight: bold;
 }
 
@@ -37,7 +38,7 @@ body {
     text-align: center;
 }
 
-.btn-success, .btn-danger {
+.btn-success {
     opacity: 0.6;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -55,7 +56,8 @@ body {
 
 .btn-success.active, .btn-danger.active{
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: visible;
+    box-shadow: 0 0 10px dimgray;
 }
 
 .btn:focus {
@@ -72,15 +74,16 @@ body {
 }
 
 ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 32rem;
     margin-bottom: 8px;
     background: #f2f2f2;
     padding: 10px 15px;
     overflow: hidden;
     word-wrap: break-word;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-radius: 10px;
 }
 
 ul li.checked {
@@ -112,4 +115,39 @@ ul li.checked {
 .todo {
     width: 21rem;
     margin: 0 auto;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.check {
+    display: none;
+}
+
+.check + span {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.check:checked + span:before {
+    position: absolute;
+    content: '✓';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: palegreen;
+    border-radius: 3px;
+    box-shadow: 0 0 10px dimgray;
+}
+
+.lineThrough {
+    text-decoration: line-through;
 }

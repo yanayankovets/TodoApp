@@ -6,13 +6,13 @@ const tasksElement = document.querySelector('.tasks')
 
 let todoList = []
 
-formElement.addEventListener('submit', function(event) {
+formElement.addEventListener('submit', (event) => {
     event.preventDefault()
     addTask(enterElement.value)
 })
 
 enterElement.onkeyup = () => {
-    let enteredValue = enterElement.value
+    const enteredValue = enterElement.value
 
     if (enteredValue.trim() !== '') {
         addElement.classList.add('active')
@@ -21,7 +21,7 @@ enterElement.onkeyup = () => {
     }
 }
 
-function getDate (date = new Date()) {
+const getDate = (date = new Date()) => {
 
     let hour = date.getHours()
     if (date.getHours() < 10) {
@@ -46,11 +46,11 @@ function getDate (date = new Date()) {
     return `${hour}:${minute} ${day}.${month}.${date.getFullYear()}`
 }
 
-function addTask(item) {
+const addTask = (item) => {
     if (item !== '') {
         const todoObject = {
             id: Date.now(),
-            date: getDate(),
+            date: new Date(),
             text: item,
             isChecked: false
         };
@@ -61,7 +61,7 @@ function addTask(item) {
     }
 }
 
-function renderTodoList(todoList) {
+const renderTodoList = (todoList) => {
     tasksElement.innerHTML = ''
 
     todoList.forEach(function(item) {
@@ -71,28 +71,36 @@ function renderTodoList(todoList) {
         li.setAttribute('class', 'item')
         li.setAttribute('data-key', item.id)
 
-        if (item.isChecked === true) {
+        if (item.isChecked) {
             li.classList.add('checked')
         }
 
+        const checkbox = `
+        <label>
+            <input type="checkbox" class="checkbox check" ${checked}>
+            <span></span>
+        </label>
+        `
+        const lineThroughClassName = item.isChecked ? 'lineThrough' : ''
+
         li.innerHTML = `
-            <input type="checkbox" class="checkbox" ${checked}>
-            <p class="todo">${item.text}</p>
+            ${checkbox}
+            <p class="todo ${lineThroughClassName}">${item.text}</p>
             <div class="delete_block">
                 <button type="button" class="btn btn-primary">x</button>
-                <time class="ms-auto text-muted me-3 text-nowrap">${getDate()}</time>
+                <time class="ms-auto text-muted me-3 text-nowrap">${getDate(new Date(item.date))}</time>
             </div>
-    `
+        `
         tasksElement.append(li)
     })
 }
 
-function addToLocalStorage(todoList) {
+const addToLocalStorage = (todoList) => {
     localStorage.setItem('todoList', JSON.stringify(todoList))
     renderTodoList(todoList)
 }
 
-function getFromLocalStorage() {
+const getFromLocalStorage = () => {
     const reference = localStorage.getItem('todoList')
     if (reference) {
         todoList = JSON.parse(reference)
@@ -100,7 +108,7 @@ function getFromLocalStorage() {
     }
 }
 
-function toggle(id) {
+const toggle = (id) => {
     todoList.forEach(function(item) {
         if (item.id == id) {
             item.isChecked = !item.isChecked
@@ -109,22 +117,30 @@ function toggle(id) {
     addToLocalStorage(todoList)
 }
 
-function deleteTask(id) {
+const deleteTask = (id) => {
     todoList = todoList.filter(function(item) {
         return item.id != id
     })
     addToLocalStorage(todoList)
 }
-
 getFromLocalStorage()
-
 
 tasksElement.addEventListener('click', function(event) {
     if (event.target.type === 'checkbox') {
-        toggle(event.target.parentElement.getAttribute('data-key'))
+        toggle(event.target.parentElement.parentElement.getAttribute('data-key'))
     }
 
     if (event.target.classList.contains('btn-primary')) {
         deleteTask(event.target.parentElement.parentElement.getAttribute('data-key'))
     }
 })
+
+const deleteAll = () => {
+    if (todoList.length > 0) {
+        todoList = []
+        addToLocalStorage([])
+        renderTodoList(todoList)
+    }
+}
+deleteAllElement.addEventListener('click', deleteAll)
+
