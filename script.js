@@ -93,7 +93,18 @@ const renderTodoList = (todoList) => {
         `
         tasksElement.append(li)
     })
+
+    document.querySelector('#delete_all').disabled = false
+
+    const activateButton = () => {
+
+        if (todoList.length > 0) {
+            deleteAllElement.disabled = true
+        }
+    }
+    deleteAllElement.addEventListener('click', activateButton)
 }
+
 
 const addToLocalStorage = (todoList) => {
     localStorage.setItem('todoList', JSON.stringify(todoList))
@@ -144,3 +155,13 @@ const deleteAll = () => {
 }
 deleteAllElement.addEventListener('click', deleteAll)
 
+
+document.querySelector('#delete_all').disabled = true
+
+const activateButton = () => {
+
+    if (todoList.length > 0) {
+        deleteAllElement.disabled = false
+    }
+}
+deleteAllElement.addEventListener('click', activateButton)
