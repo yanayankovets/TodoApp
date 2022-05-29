@@ -42,9 +42,6 @@ body {
     opacity: 0.6;
     pointer-events: none;
     transition: all 0.3s ease;
-}
-
-.btn-success {
     background: linear-gradient(100deg, rgb(23, 152, 251) 0%, rgb(45, 92, 254) 100%) !important;
     border: #1798FBFF !important;
 }

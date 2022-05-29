@@ -97,7 +97,6 @@ const renderTodoList = (todoList) => {
     document.querySelector('#delete_all').disabled = true
 
     const activateButton = () => {
-
         if (todoList.length > 0) {
             deleteAllElement.disabled = false
         }
