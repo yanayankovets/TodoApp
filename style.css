@@ -1,0 +1,150 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    border-radius: 0.25rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to right, #289ff8, #2D5CFE);
+}
+
+#root {
+    background-color: #FFF;
+    border: .06rem solid gray;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 20%);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    margin-top: 26px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#form {
+    width: 40rem;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.form-control {
+    margin-right: 0.5rem;
+    text-align: center;
+}
+
+.btn-success {
+    opacity: 0.6;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: linear-gradient(100deg, rgb(23, 152, 251) 0%, rgb(45, 92, 254) 100%) !important;
+    border: #1798FBFF !important;
+}
+
+.btn-danger {
+    background: linear-gradient(20deg, rgb(246, 84, 84) 0%, rgb(173, 6, 6) 100%) !important;
+    border: #AD0606FF !important;
+}
+
+.btn-success.active {
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 0 10px dimgray;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 32rem;
+    margin-bottom: 8px;
+    background: #f2f2f2;
+    padding: 10px 15px;
+    overflow: hidden;
+    word-wrap: break-word;
+    border-radius: 10px;
+}
+
+ul li.checked {
+    background: #D3D3D3;
+}
+
+.delete_block {
+    width: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.delete_block time {
+    font-size: 14px;
+}
+
+.btn.btn-primary {
+    padding: 0.1rem 0.75rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(100deg, rgb(23, 152, 251) 0%, rgb(45, 92, 254) 100%) !important;
+}
+
+.item time {
+    padding-right: 10px;
+}
+
+.todo {
+    width: 21rem;
+    margin: 0 auto;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.check {
+    display: none;
+}
+
+.check + span {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.check:checked + span:before {
+    position: absolute;
+    content: '✓';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: palegreen;
+    border-radius: 3px;
+    box-shadow: 0 0 10px dimgray;
+}
+
+.lineThrough {
+    text-decoration: line-through;
+}
