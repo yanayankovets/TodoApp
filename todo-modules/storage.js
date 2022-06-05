@@ -6,12 +6,9 @@ const addToLocalStorage = (todoList) => {
 }
 
 const getFromLocalStorage = () => {
-    const reference = localStorage.getItem('todoList')
-    if (reference) {
-        todoList = JSON.parse(reference)
-        renderTodoList(todoList)
-    }
+    return JSON.parse(localStorage.getItem('todoList'))
 }
+getFromLocalStorage()
 
 const toggle = (id) => {
     todoList.forEach(function(item) {
@@ -22,12 +19,4 @@ const toggle = (id) => {
     addToLocalStorage(todoList)
 }
 
-const deleteTask = (id) => {
-    todoList = todoList.filter(function(item) {
-        return item.id != id
-    })
-    addToLocalStorage(todoList)
-}
-getFromLocalStorage()
-
-export { addToLocalStorage, getFromLocalStorage, toggle, deleteTask }
+export { addToLocalStorage, getFromLocalStorage, toggle }

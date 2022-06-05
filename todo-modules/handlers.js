@@ -1,6 +1,6 @@
-import { addToLocalStorage, toggle, deleteTask } from './storage.js'
-import { renderTodoList, todoList } from './todoItem.js'
-import { formElement, deleteAllElement, enterElement, tasksElement } from './main.js'
+import { addToLocalStorage, toggle } from './storage.js'
+import { renderTodoList, todoList, deleteTask } from './todoItem.js'
+import { formElement, deleteAllElement, enterElement, tasksElement } from './script.js'
 import { addTask } from './templates.js'
 
 formElement.addEventListener('submit', (event) => {
@@ -19,10 +19,9 @@ tasksElement.addEventListener('click', function(event) {
 })
 
 const deleteAll = () => {
-    if (todoList.length > 0) {
-        todoList = []
-        addToLocalStorage([])
+    todoList.length = 0
+        addToLocalStorage(todoList)
         renderTodoList(todoList)
-    }
 }
 deleteAllElement.addEventListener('click', deleteAll)
+

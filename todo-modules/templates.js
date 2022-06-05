@@ -1,5 +1,5 @@
 import { addToLocalStorage } from './storage.js'
-import { enterElement } from './main.js'
+import { enterElement } from './script.js'
 import { todoList } from './todoItem.js'
 
 const getDate = (date = new Date()) => {

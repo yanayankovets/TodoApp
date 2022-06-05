@@ -1,5 +1,6 @@
-import { tasksElement, deleteAllElement } from './main.js'
+import { tasksElement, deleteAllElement } from './script.js'
 import { getDate } from './templates.js'
+import { addToLocalStorage, getFromLocalStorage } from './storage.js'
 
 let todoList = []
 
@@ -48,5 +49,13 @@ const renderTodoList = (todoList) => {
 
     deleteAllElement.removeEventListener('click', activateButton)
 }
+renderTodoList(getFromLocalStorage(todoList))
 
-export { todoList, renderTodoList }
+const deleteTask = (id) => {
+    todoList = todoList.filter(function(item) {
+        return item.id != id
+    })
+    addToLocalStorage(todoList)
+}
+
+export { todoList, renderTodoList, deleteTask }
